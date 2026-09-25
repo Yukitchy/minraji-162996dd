@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>みんらじ貝塚取材の段取り</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<style>
+:root{--bg:#F1F0EB;--card:#FFFFFF;--ink:#1F2426;--mute:#5F6A6D;--ash:#8A9497;--line:#DDDBD3;--sea:#2F5D68;--sea2:#244A53;--onsea:#CFE0E4;--shu:#B3402E;--wash:#E6ECEC;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171A1B;--card:#20262A;--ink:#EDEFEE;--mute:#B4BDBF;--ash:#7E888B;--line:#33393C;--sea:#5F9AA8;--sea2:#2F5D68;--onsea:#173238;--shu:#E0705C;--wash:#1E2C30;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171A1B;--card:#20262A;--ink:#EDEFEE;--mute:#B4BDBF;--ash:#7E888B;--line:#33393C;--sea:#5F9AA8;--sea2:#2F5D68;--onsea:#173238;--shu:#E0705C;--wash:#1E2C30;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased;font-feature-settings:"palt";padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:900px;margin:0 auto}
+h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance;word-break:auto-phrase;line-break:strict;overflow-wrap:anywhere}
+p,li,td{word-break:auto-phrase;line-break:strict;overflow-wrap:anywhere}
+a{color:var(--sea)}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:24px 0;flex-wrap:wrap}
+.brand{font-weight:900;font-size:14px}
+.pill{font-size:12px;font-weight:700;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:5px 14px;background:var(--card)}
+.hero{padding:24px 0 48px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.eyebrow{font-size:13px;font-weight:700;color:var(--sea);letter-spacing:.08em;margin-bottom:16px}
+h1{font-size:clamp(30px,5vw,50px);font-weight:900;letter-spacing:-.03em}
+.lead{max-width:32em;font-size:17px;color:var(--mute);margin:22px 0 0}
+.stats{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:20px;font-size:13px;color:var(--ash);font-variant-numeric:tabular-nums}
+.stats b{color:var(--ink);font-weight:900}
+.hero figure{margin:0}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;display:block}
+.hero figcaption{font-size:12px;color:var(--ash);margin-top:6px}
+section{padding:52px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(24px,4vw,34px);font-weight:900;letter-spacing:-.02em;margin-bottom:26px}
+.secnote{margin:-14px 0 22px;color:var(--mute);font-size:14px}
+.band{background:var(--sea);color:#fff;border-top:0;padding:48px 40px;border-radius:24px;margin:8px 0 16px}
+.band h2{color:#fff}
+.band ol{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.band li{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:start}
+.band .num{font-size:26px;font-weight:900;line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:2px}
+.band b{display:block;font-size:19px;font-weight:900;line-height:1.4}
+.band p{margin:6px 0 0;color:var(--onsea);font-size:14px}
+.band .who{font-size:12px;font-weight:700;letter-spacing:.06em;margin-top:4px;color:#fff;opacity:.8}
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.p{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 20px 16px}
+.p b{display:block;font-size:18px;font-weight:900}
+.p .role{display:block;font-size:12px;font-weight:700;color:var(--sea);letter-spacing:.04em;margin-top:2px}
+.p p{margin:8px 0 0;font-size:14px;color:var(--mute);line-height:1.75}
+.lks{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lks a{font-size:12px;font-weight:700;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px;background:var(--wash)}
+.lks a:hover{border-color:var(--sea)}
+.sub{font-size:15px;font-weight:900;color:var(--mute);margin:30px 0 12px}
+.memo{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px 20px;margin-bottom:14px}
+.ph{font-size:13px;font-weight:700;color:var(--sea);letter-spacing:.04em;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ph span{color:var(--ash);font-weight:500;font-variant-numeric:tabular-nums}
+.memo h3{font-size:21px;font-weight:900;margin:8px 0 10px}
+.memo .lead{font-size:15px;margin:0 0 12px;color:var(--ink)}
+.pts{margin:0 0 6px;padding:0;list-style:none;display:grid;gap:6px}
+.pts li{position:relative;padding-left:18px;font-size:14.5px;color:var(--mute);line-height:1.7}
+.pts li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:8px;border-radius:2px;background:var(--sea)}
+.src{font-size:12px;color:var(--ash);margin:10px 0 0}
+.src a{color:var(--ash)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums;margin:4px 0 8px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--ash);font-weight:700}
+tr.hi td{background:var(--wash);font-weight:700}
+.map{border-radius:20px;overflow:hidden;background:var(--card);border:1px solid var(--line);margin-bottom:14px}
+.map iframe{display:block;width:100%;height:340px;border:0}
+.link{display:block;background:var(--sea);color:#fff;border-radius:20px;padding:20px 24px;margin-bottom:14px;text-decoration:none}
+.link b{display:block;font-size:18px;font-weight:900;margin-bottom:4px}
+.link span{font-size:14px;color:var(--onsea)}
+.link:hover{filter:brightness(1.08)}
+.ask{display:inline-block;font-size:12px;font-weight:900;color:var(--shu);border:1px solid var(--shu);border-radius:6px;padding:0 6px;margin-left:4px;white-space:nowrap}
+.todo{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.todo li{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--shu);border-radius:12px;padding:12px 16px;font-size:14.5px}
+.todo li b{display:block;font-size:15.5px}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--line);display:grid;gap:14px}
+.tl li{padding-left:18px;position:relative;font-size:14.5px;color:var(--mute)}
+.tl li::before{content:"";position:absolute;left:-6px;top:.6em;width:10px;height:10px;border-radius:50%;background:var(--sea)}
+.tl b{color:var(--ink);font-variant-numeric:tabular-nums;margin-right:6px}
+footer{padding-top:28px;border-top:1px solid var(--line);font-size:12px;color:var(--ash)}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.hero img{aspect-ratio:3/2}.band{padding:36px 20px}.band li{grid-template-columns:70px 1fr}.band .num{font-size:21px}}
+</style>
+<div class="wrap">
+<header><div class="brand">みんらじ 大阪南部取材</div><div class="pill">2026年9月26日（土）関空 → 貝塚</div></header>
+
+<div class="hero">
+  <div><div class="eyebrow">9月26日の段取り</div><h1>貝塚でシンヤさんの宿を取材する日</h1>
+  <p class="lead">LINEグループで決まったことを1枚にまとめました。時刻と運賃は9月25日に調べ直した数字です。まだ決まっていないことは赤い「未定」の札を付けています。</p>
+  <div class="stats"><span>集合 <b>11:30</b></span><span>場所 <b>南海 貝塚駅 西口ロータリー</b></span><span>天気 <b>雨</b>（午後の降水確率90%）</span></div></div>
+  <figure><img src="img/zen.jpg" alt="ZEN HOUSE KAIZUKAの床の間のある和室"><figcaption>収録会場のZEN HOUSE KAIZUKA（写真: Airbnbの掲載ページより）</figcaption></figure>
+</div>
+
+<section class="band"><h2>当日の流れ</h2><ol>
+<li><span class="num">朝</span><div><b>てつろーさんが関空に着く</b><p>ジェットスター便なので第1ターミナル着。空港でコーヒーを飲んでから貝塚へ向かう予定。</p><span class="who">てつろー　便名と時刻は<span class="ask" style="color:#fff;border-color:#fff">未定</span></span></div></li>
+<li><span class="num">10:05</span><div><b>ユウキが関空 第2ターミナルに着く</b><p>Peach MM304（成田8:30発）。第2ターミナルから関西空港駅までは連絡バスで移動（乗車7〜9分・約5分間隔）。</p><span class="who">ユウキ</span></div></li>
+<li><span class="num">11:10</span><div><b>関西空港駅から空港急行に乗る</b><p>南海 空港急行なんば行（1番線）。乗り換えなしで11:24に貝塚着。てつろーさんはこの電車の予定。ユウキは一本前の10:53発（11:08着）に間に合えばそちら。</p><span class="who">てつろー・ユウキ</span></div></li>
+<li><span class="num">11:30</span><div><b>貝塚駅の西口ロータリーで合流</b><p>シンヤさんが西口ロータリーで待っていてくれます。そのままランチへ。店は11:30で予約済みで、駅からすぐ。いつもゲストを連れて行く、長屋を改装した地産地消のお店とのこと。</p><span class="who">3人</span></div></li>
+<li><span class="num">午後</span><div><b>ZEN HOUSE KAIZUKAで収録</b><p>シンヤさんのリスティング。駅から歩いて4分。この日は収録のためにブロックしてもらっています。</p><span class="who">3人</span></div></li>
+<li><span class="num">夜</span><div><b>それぞれ移動</b><p>てつろーさんは夜の便で関空から東京へ（日帰り）。帰りはシンヤさんが車で送れるかもしれない、という話が出ています。ユウキは大阪に2泊して、9月28日（月）21:00関空発のジェットスターGK238で帰ります。</p><span class="who">終わる時刻は<span class="ask" style="color:#fff;border-color:#fff">未定</span></span></div></li>
+</ol></section>
+
+<section><h2>今回の3人</h2><div class="people">
+<div class="p"><b>シンヤさん（Shinya N）</b><span class="role">ZEN HOUSE KAIZUKAのホスト・今回の取材先</span><p>貝塚市でAirbnbの宿を10年以上続けているスーパーホスト。2017年に大阪ホームシェアリングクラブを立ち上げた人で、Airbnb Host Advisory Board（2021〜22年）の初期メンバー。2025年には米国国務省の交流プログラムIVLPに招かれ、アメリカ5都市で地方の観光を見てきた。英語と中国語が話せる。みんらじのリスナーでもある</p><div class="lks"><a href="https://www.airbnb.jp/rooms/9174649" target="_blank" rel="noopener">ZEN HOUSE KAIZUKA</a><a href="https://linktr.ee/shinyaN" target="_blank" rel="noopener">活動一覧（Linktree）</a><a href="https://news.airbnb.com/airbnb-announces-2022-host-advisory-board-members/" target="_blank" rel="noopener">HAB発表（Airbnb）</a><a href="https://community.withairbnb.com/t5/Hosting/Host-Advisory-Board-Spotlight-Shinya-Nishide/m-p/1479553" target="_blank" rel="noopener">HAB紹介記事</a><a href="https://meridian.org/project/rural-economic-opportunity-through-binational-tourism/" target="_blank" rel="noopener">IVLP</a></div></div>
+<div class="p"><b>てつろー（小島哲郎）</b><span class="role">みんらじの相方・東京の宿泊ホスト</span><p>このグループを作った人。6月末のイベントでシンヤさんと10年ぶりに再会したのが今回の取材のきっかけ。今回は日帰りで、成田と関空を飛行機で往復する</p><div class="lks"><a href="https://minpaku.yuukipodcast.com/" target="_blank" rel="noopener">みんらじ</a></div></div>
+<div class="p"><b>ユウキ（Yuuki Ichihara）</b><span class="role">みんらじ・秋葉原の体験ホスト</span><p>録音係。この日は成田から関空に入り、そのまま大阪に2泊する</p><div class="lks"><a href="https://minpaku.yuukipodcast.com/" target="_blank" rel="noopener">みんらじ</a></div></div>
+</div>
+
+<h3 class="sub">話に出てきた人と団体（今回は来ません）</h3><div class="people">
+<div class="p"><b>キリンこども応援団 compass</b><span class="role">泉佐野市・高校生が運営する民泊</span><p>フリースクールの高校生が空き家を民泊にして運営しているプロジェクトで、シンヤさんがアドバイザーをしている。26日は高校生の行事と重なるため見学はなし。別の日の取材には前向きとの返事をもらっている</p><div class="lks"><a href="https://kirin-npo.com/koutou/compass/" target="_blank" rel="noopener">compass</a><a href="https://kirin-npo.com/" target="_blank" rel="noopener">キリンこども応援団</a><a href="https://prtimes.jp/main/html/rd/p/000000107.000105383.html" target="_blank" rel="noopener">オープン時の発表</a><a href="https://www.airbnb.jp/rooms/1268540097448723721" target="_blank" rel="noopener">Airbnb</a></div></div>
+<div class="p"><b>大阪ホームシェアリングクラブ</b><span class="role">シンヤさんが2017年に作ったホストの会</span><p>Airbnbアンバサダーやコミュニティリーダー、大家の会の理事などが集まる任意団体。8月の案では夜に座談会をする予定だったが、今回は声をかけないことになった。活動の話はシンヤさんから聞く</p><div class="lks"><a href="https://www.osakahomesharingclub.com/" target="_blank" rel="noopener">公式サイト</a></div></div>
+<div class="p"><b>Junさん（ゲストハウスあがえ）</b><span class="role">熊野（田辺市）の宿・熊野古道ガイド</span><p>シンヤさんが紹介してくれた宿。てつろーさんが8月24〜26日に泊まり、ガイドもお願いした</p><div class="lks"><a href="https://www.airbnb.jp/rooms/45512657" target="_blank" rel="noopener">Airbnb</a><a href="https://www.instagram.com/guesthouse_agae/" target="_blank" rel="noopener">Instagram</a></div></div>
+<div class="p"><b>Genichiroさん</b><span class="role">関西のホスト</span><p>てつろーさんが熊野の宿を探したときに最初に思い浮かべた人。高野山のほうの人だったかも、という話で止まっている</p></div>
+</div></section>
+
+<section><h2>関空から貝塚まで</h2><p class="secnote">南海の空港急行で乗り換えなし。電車に乗っている時間は14〜15分、運賃は600円（ICカードも同じ）。9月26日は土曜なので土休日ダイヤです。</p>
+<table><tr><th>関西空港駅 発</th><th>貝塚 着</th><th>種別</th><th>メモ</th></tr>
+<tr><td>10:39</td><td>10:53</td><td>空港急行 なんば行</td><td></td></tr>
+<tr><td>10:53</td><td>11:08</td><td>空港急行 なんば行</td><td>ユウキが間に合えばこれ</td></tr>
+<tr class="hi"><td>11:10</td><td>11:24</td><td>空港急行 なんば行</td><td>てつろーさんの予定</td></tr>
+</table>
+<ul class="pts"><li>Peachは第2ターミナル着。関西空港駅までは無料の連絡バスで移動するので、着陸から駅まで20分ほど見ておく</li><li>ジェットスターは第1ターミナル。駅まで歩いて行ける</li></ul>
+<p class="src">出典: <a href="https://transit.yahoo.co.jp/search/result?from=%E9%96%A2%E8%A5%BF%E7%A9%BA%E6%B8%AF&to=%E8%B2%9D%E5%A1%9A%28%E5%A4%A7%E9%98%AA%29&y=2026&m=09&d=26&hh=11&m1=2&m2=4&type=4" target="_blank" rel="noopener">Yahoo!路線情報（9/26 11:24着で検索）</a> ／ <a href="https://www.nankaibus.jp/airport/kanku_02/" target="_blank" rel="noopener">南海バス 関西空港の連絡バス</a> ／ 乗り換えなし15分・駅から徒歩4分はシンヤさんのLINE（9/12・9/25）</p>
+</section>
+
+<section><h2>集合場所</h2>
+<div class="map"><iframe src="https://www.google.com/maps?q=%E5%8D%97%E6%B5%B7%E8%B2%9D%E5%A1%9A%E9%A7%85&output=embed" loading="lazy" title="南海 貝塚駅の地図" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+<article class="memo"><div class="ph">南海本線 貝塚駅（NK26）<span>11:30</span></div><h3>西口ロータリーでシンヤさんが待っています</h3><ul class="pts"><li>改札を出たら西口へ。水間鉄道の貝塚駅は東口側にあるので反対側です</li><li>西口にはロータリーとタクシー乗り場があります</li><li>ランチの店も宿も駅から歩ける距離です</li></ul>
+<p class="src">出典: <a href="https://www.nankai.co.jp/traffic/station/kaizuka.html" target="_blank" rel="noopener">南海電鉄 貝塚駅</a> ／ <a href="https://4travel.jp/travelogue/11404534" target="_blank" rel="noopener">4travel 貝塚駅の旅行記</a></p></article>
+<a class="link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%97%E6%B5%B7%E8%B2%9D%E5%A1%9A%E9%A7%85%20%E8%A5%BF%E5%8F%A3" target="_blank" rel="noopener"><b>Googleマップで貝塚駅西口を開く</b><span>スマホのマップアプリで道順を出せます</span></a>
+<a class="link" href="https://www.airbnb.jp/rooms/9174649" target="_blank" rel="noopener"><b>収録会場 ZEN HOUSE KAIZUKA</b><span>80㎡超の平屋の古民家。8畳の和室と50㎡のリビング。駐車場あり。★4.97（573件）</span></a>
+</section>
+
+<section><h2>天気</h2>
+<article class="memo"><div class="ph">大阪府貝塚市 9月26日（土）<span>9月25日時点の予報</span></div><h3>一日雨で午後は強まりそう</h3>
+<table><tr><th>時間</th><th>0〜6時</th><th>6〜12時</th><th>12〜18時</th><th>18〜24時</th></tr><tr><td>降水確率</td><td>50%</td><td>70%</td><td>90%</td><td>80%</td></tr></table>
+<ul class="pts"><li>雨時々くもり。最高23℃・最低21℃で、寒くはない</li><li>傘は必須。駅から店と宿までは歩くので、濡れてもいい靴だと楽です</li><li>録音機材は防水の袋に入れておく</li></ul>
+<p class="src">出典: <a href="https://tenki.jp/forecast/6/30/6200/27208/" target="_blank" rel="noopener">tenki.jp 貝塚市の天気</a>（当日朝にもう一度見てください）</p></article>
+</section>
+
+<section><h2>収録で話せそうなこと</h2><p class="secnote">シンヤさんが8月3日に送ってくれたネタ帳と、てつろーさん・ユウキの聞きたいことです。どれを話すかは当日決めます。</p>
+<article class="memo"><div class="ph">シンヤさんのおすすめ<span>8/3のLINEより</span></div><h3>ふつうのホストの話とは違う切り口</h3><ul class="pts"><li>Airbnbのアメリカ本社との関わり。2026年のSummer Releaseでサンフランシスコ本社のイベントに参加</li><li>Airbnb Host Advisory Board（HAB）の初期メンバーとして何をしたか</li><li>大阪ホームシェアリングクラブの運営。行政や地域との連携、ホスト同士の情報共有</li><li>Airbnbと米国国務省が組んだIVLP。テーマは二国間の観光による地方の経済機会。ワシントンD.C.、マイアミ、リトルロック、アルバカーキ、サンフランシスコを訪問</li><li>アメリカが考える地方創生と、日本とアメリカの地方の観光政策の違い</li><li>民泊と教育（キリンこども応援団 compass）</li></ul>
+<p class="src">参考: <a href="https://jp.usembassy.gov/ja/celebrating-80-years-of-ivlp-exchanges-ja/" target="_blank" rel="noopener">IVLPについて（在日米国大使館）</a> ／ <a href="https://2021-2025.state.gov/u-s-department-of-state-launches-partnership-with-airbnb-to-support-rural-economic-opportunity-through-binational-tourism-between-the-united-states-and-japan" target="_blank" rel="noopener">国務省とAirbnbの連携発表</a></p></article>
+<article class="memo"><div class="ph">てつろーさん・ユウキから<span>8/3のLINEと収録前のネタ出し</span></div><h3>大阪の民泊市場のいま</h3><ul class="pts"><li>話題になっている大阪の民泊市場の現状（てつろーさん）</li><li>新宿区が住居専用地域と文教地区の民泊を原則禁止する方針。区の民泊は全国最多の3,900件以上。まだ方針の段階で、条例案は2027年2月の予定</li><li>8月の訪日客は309万8,900人で前年同月より9.6%減。中国が59.0%減った一方、韓国は28.7%増</li><li>関空のすぐそばで宿をやっていて、この変化をどう感じているか</li></ul>
+<p class="src">出典: <a href="https://www.jnto.go.jp/statistics/data/visitors-statistics/" target="_blank" rel="noopener">JNTO 訪日外客数</a>（9/16公表の8月推計値）／ 新宿区の方針は日経（9/4）・TOKYO MX（9/8）の報道</p></article>
+</section>
+
+<section><h2>まだ決まっていないこと</h2><p class="secnote">分かったらLINEで共有して、このページも直します。</p>
+<ul class="todo">
+<li><b>ランチの店の名前と場所</b>シンヤさんが11:30で予約済み。駅からすぐの長屋のお店<span class="ask">ユウキに確認</span></li>
+<li><b>てつろーさんの行きと帰りの便</b>行きはジェットスターで第1ターミナル着。9/13の時点では帰りにPeach MM315（関空20:05発）も候補に挙がっていた<span class="ask">ユウキに確認</span></li>
+<li><b>収録が終わる時刻と、関空まで送ってもらうか</b>9/12にシンヤさんが「帰りよければお送りしますよ」と言ってくれている<span class="ask">ユウキに確認</span></li>
+<li><b>雨が強い日の過ごし方</b>ランチ後そのまま宿へ入るか、大阪南部を少し回るか<span class="ask">ユウキに確認</span></li>
+</ul></section>
+
+<section><h2>ここまでの経緯</h2><ul class="tl">
+<li><b>7/1</b>てつろーさんがグループを作成。前日のイベントでシンヤさんと10年ぶりに再会し、取材をお願いすることに</li>
+<li><b>7/10</b>3人の都合が合う8/23に決定。昼に収録、夜にホームシェアリングクラブと座談会の案</li>
+<li><b>8/21</b>シンヤさんの家の事情で8/23は見送り</li>
+<li><b>8/26</b>9/26（土）に決定。シンヤさんがリスティングをブロック</li>
+<li><b>9/13</b>夜の会は今回はなし。てつろーさんは飛行機で日帰りに</li>
+<li><b>9/16</b>compassの見学は高校生の行事と重なり、別の機会に</li>
+<li><b>9/24</b>シンヤさんがランチを11:30で予約</li>
+<li><b>9/25</b>集合は11:30ごろ、貝塚駅西口ロータリーに決定。現地は雨の予報</li>
+</ul></section>
+
+<footer>みんらじ（ゼロからの民泊ガイドラジオ）の3人用のページです。検索にはのせていません。2026年9月25日更新</footer>
+</div>
+</html>
