@@ -99,13 +99,17 @@ const auds=[...document.querySelectorAll('audio')],pp=nav.querySelector('.pp'),s
 const fmt=t=>isFinite(t)?`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`:'0:00';
 function setCur(a){cur=a;rt.textContent=a.playbackRate+'×';const n=a.id.slice(1);nav.querySelectorAll('.eps-btns a').forEach(x=>x.classList.toggle('on',x.dataset.n===n));paintMini();paintTicks();}
 function paintTicks(){const n=cur.id.slice(1),box=nav.querySelector('.ticks');box.innerHTML='';if(!cur.duration)return;document.querySelectorAll(`.chap a.ts[data-n="${n}"]`).forEach(a=>{const t=+a.dataset.sec;if(t>0&&t<cur.duration){const i=document.createElement('i');i.style.left=(t/cur.duration*100)+'%';box.appendChild(i);}});}
-function paintMini(){pp.textContent=cur.paused?'▶':'❚❚';if(!seek.matches(':active'))seek.value=cur.duration?Math.round(cur.currentTime/cur.duration*1000):0;tm.textContent=fmt(cur.currentTime);}
+function paintMini(){pp.textContent=cur.paused?'▶':'❚❚';if(!drag)seek.value=cur.duration?Math.round(cur.currentTime/cur.duration*1000):0;tm.textContent=fmt(cur.currentTime);}
 auds.forEach(a=>{a.addEventListener('play',()=>{auds.forEach(o=>{if(o!==a&&!o.paused)o.pause();});setCur(a);});['pause','timeupdate','loadedmetadata','ended'].forEach(ev=>a.addEventListener(ev,()=>{if(a===cur){paintMini();if(ev==='loadedmetadata')paintTicks();}}));});
 pp.onclick=()=>{cur.paused?cur.play():cur.pause();};
 nav.querySelector('.bk').onclick=()=>{cur.currentTime=Math.max(0,cur.currentTime-15);};nav.querySelector('.fw').onclick=()=>{cur.currentTime=Math.min(cur.duration||1e9,cur.currentTime+15);};
 rt.onclick=()=>{const r=RATES[(RATES.indexOf(cur.playbackRate)+1)%RATES.length];cur.playbackRate=r;};
 auds.forEach(a=>a.addEventListener('ratechange',()=>{if(a===cur)rt.textContent=a.playbackRate+'×';const c=document.querySelector(`.ctl[data-n="${a.id.slice(1)}"]`);if(c)c.querySelectorAll('[data-rate]').forEach(b=>b.classList.toggle('on',+b.dataset.rate===a.playbackRate));}));
-seek.oninput=()=>{if(cur.duration)cur.currentTime=seek.value/1000*cur.duration;};
+// 章の区切りに吸い付く: 区切りから全長の2.5%（最大20秒）以内なら区切りへスナップ
+let drag=false,lastSnap=null;['pointerdown','touchstart'].forEach(ev=>seek.addEventListener(ev,()=>{drag=true;lastSnap=null;}));['pointerup','touchend','pointercancel'].forEach(ev=>seek.addEventListener(ev,()=>{drag=false;}));
+function chapTimes(){return [...document.querySelectorAll(`.chap a.ts[data-n="${cur.id.slice(1)}"]`)].map(a=>+a.dataset.sec).filter(t=>t>0);}
+seek.oninput=()=>{if(!cur.duration)return;let t=seek.value/1000*cur.duration;const win=Math.min(20,cur.duration*0.025);let snap=null;for(const c of chapTimes()){if(Math.abs(t-c)<win&&(snap===null||Math.abs(t-c)<Math.abs(t-snap)))snap=c;}
+ if(snap!==null){t=snap;seek.value=Math.round(t/cur.duration*1000);if(lastSnap!==snap&&navigator.vibrate)navigator.vibrate(8);lastSnap=snap;}else lastSnap=null;cur.currentTime=t;tm.textContent=fmt(t);};
 setCur(auds[0]);
 nav.querySelectorAll('.eps-btns a').forEach(x=>x.addEventListener('click',()=>{const a=document.getElementById('a'+x.dataset.n);if(!a||a===cur)return;const was=!cur.paused;cur.pause();setCur(a);if(was)a.play();}));
 </script></body></html>
