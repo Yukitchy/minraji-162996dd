@@ -12,9 +12,12 @@ p{max-width:40em;margin:0 0 14px;overflow-wrap:anywhere}
 .top a{color:var(--acc);text-decoration:none;font-weight:700}
 .hero{padding:28px 0 18px}.hero .eyebrow{color:var(--acc);font-weight:900;font-size:13px;letter-spacing:.06em}
 .hero h1{font-size:40px;font-weight:900;margin:8px 0 14px}.hero .lead{color:var(--mute)}
-nav.eps{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 30px}
-nav.eps a{display:grid;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);text-decoration:none;font-weight:700}
-nav.eps a small{font-weight:400;color:var(--ash);font-size:12px}
+html{scroll-behavior:smooth}.ep{scroll-margin-top:12px}
+nav.eps{display:flex;gap:10px;margin:18px 0 30px}
+nav.eps.fixed{position:fixed;left:0;right:0;bottom:0;margin:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(247,246,243,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);z-index:9}
+nav.eps.fixed a{flex:1;text-align:center;padding:12px 0}body.navfixed{padding-bottom:76px}
+nav.eps a.on{background:var(--acc);border-color:var(--acc);color:#fff}
+nav.eps a{display:block;padding:12px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);text-decoration:none;font-weight:700}
 .ep{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px;margin:0 0 26px}
 .ep .eyebrow{font-size:12px;color:var(--ash);font-weight:700}.ep h2{font-size:24px;font-weight:900;margin:6px 0 16px}
 audio{width:100%;margin:0 0 8px}
@@ -48,7 +51,7 @@ footer{padding-top:28px;border-top:1px solid var(--line);font-size:12px;color:va
 <div class="hero"><div class="eyebrow">2026年9月26日 ZEN HOUSE KAIZUKA</div><h1>試聴と<br>インタビュー記事</h1>
 <p class="lead">本編収録を3回に分けて編集した音源です。公開前の確認用で、番号と公開日はこれから決めます。各回の下に、同じ内容をインタビュー記事にしたものを置きました。</p></div>
 <figure class='hero'><img src='img/p069.jpg' alt='本編収録中。ZEN HOUSE KAIZUKAの座卓で（2026年9月26日）'><figcaption>本編収録中。ZEN HOUSE KAIZUKAの座卓で（2026年9月26日）</figcaption></figure>
-<nav class="eps"><a href='#ep1'>第1回<small>24分</small></a><a href='#ep2'>第2回<small>29分</small></a><a href='#ep3'>第3回<small>25分</small></a></nav>
+<nav class="eps"><a href='#ep1' data-n='1'>第1回</a><a href='#ep2' data-n='2'>第2回</a><a href='#ep3' data-n='3'>第3回</a></nav>
 <section class='ep' id='ep1'>
 <img class='epimg' src='img/p061.jpg' alt='10年ぶりに再会したシンヤさんとてつろーさん' style='object-position:50% 22%'><header><div class='eyebrow'>第1回（仮）・24分46秒</div><h2>貝塚の古民家で聞く上海発ホストの原点と10年ぶりの再会</h2></header>
 <audio id='a1' controls preload='metadata' src='audio/1.mp3'></audio>
@@ -80,4 +83,10 @@ document.addEventListener('click',e=>{const b=e.target.closest('.ctl button');if
 if(b.dataset.skip){au.currentTime=Math.max(0,au.currentTime+ +b.dataset.skip);}
 else{au.playbackRate=+b.dataset.rate;b.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));}});
 document.querySelectorAll('.ctl [data-rate="1"]').forEach(b=>b.classList.add('on'));
+// 回メニュー: ヒーローを過ぎたら画面下に追随。今いる回を赤く
+const nav=document.querySelector('nav.eps'),heroEl=document.querySelector('figure.hero');
+new IntersectionObserver(([e])=>{const f=e.boundingClientRect.bottom<0;nav.classList.toggle('fixed',f);document.body.classList.toggle('navfixed',f);},{threshold:0}).observe(heroEl);
+const eps=[...document.querySelectorAll('section.ep')];
+new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){const n=e.target.id.slice(2);nav.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.n===n));}},{rootMargin:'-40% 0px -55% 0px'}).observe;
+const io2=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){const n=e.target.id.slice(2);nav.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.n===n));}},{rootMargin:'-40% 0px -55% 0px'});eps.forEach(x=>io2.observe(x));
 </script></body></html>
