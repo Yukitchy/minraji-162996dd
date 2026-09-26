@@ -13,9 +13,10 @@ p{max-width:40em;margin:0 0 14px;overflow-wrap:anywhere}
 .hero{padding:28px 0 18px}.hero .eyebrow{color:var(--acc);font-weight:900;font-size:13px;letter-spacing:.06em}
 .hero h1{font-size:40px;font-weight:900;margin:8px 0 14px}.hero .lead{color:var(--mute)}
 html{scroll-behavior:smooth}.ep{scroll-margin-top:12px}
-nav.eps{display:flex;gap:10px;margin:18px 0 30px}
+nav.eps{margin:18px 0 30px}.eps-btns{display:flex;gap:10px}.mini{display:none}
 nav.eps.fixed{position:fixed;left:0;right:0;bottom:0;margin:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(247,246,243,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);z-index:9}
-nav.eps.fixed a{flex:1;text-align:center;padding:12px 0}body.navfixed{padding-bottom:76px}
+nav.eps.fixed{display:flex;align-items:center;gap:10px}nav.eps.fixed .eps-btns{gap:6px}nav.eps.fixed a{width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:14px}nav.eps.fixed a i{display:none}a i{font-style:normal}
+nav.eps.fixed .mini{display:flex;flex:1;align-items:center;gap:8px;min-width:0}.mini .pp{width:34px;height:34px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:13px;cursor:pointer;flex:none}.mini .seek{flex:1;min-width:0;accent-color:var(--acc);margin:0}.mini .tm{font-size:11px;color:var(--ash);white-space:nowrap;font-variant-numeric:tabular-nums}body.navfixed{padding-bottom:70px}
 nav.eps a.on{background:var(--acc);border-color:var(--acc);color:#fff}
 nav.eps a{display:block;padding:12px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);text-decoration:none;font-weight:700}
 .ep{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px;margin:0 0 26px}
@@ -51,7 +52,7 @@ footer{padding-top:28px;border-top:1px solid var(--line);font-size:12px;color:va
 <div class="hero"><div class="eyebrow">2026年9月26日 ZEN HOUSE KAIZUKA</div><h1>試聴とインタビュー記事</h1>
 <p class="lead">本編収録を3回に分けて編集した音源です。公開前の確認用で、番号と公開日はこれから決めます。各回の下に、同じ内容をインタビュー記事にしたものを置きました。</p></div>
 <figure class='hero'><img src='img/p069.jpg' alt='本編収録中。ZEN HOUSE KAIZUKAの座卓で（2026年9月26日）'><figcaption>本編収録中。ZEN HOUSE KAIZUKAの座卓で（2026年9月26日）</figcaption></figure>
-<nav class="eps"><a href='#ep1' data-n='1'>第1回</a><a href='#ep2' data-n='2'>第2回</a><a href='#ep3' data-n='3'>第3回</a></nav>
+<nav class="eps"><div class="eps-btns"><a href='#ep1' data-n='1'><i>第</i>1<i>回</i></a><a href='#ep2' data-n='2'><i>第</i>2<i>回</i></a><a href='#ep3' data-n='3'><i>第</i>3<i>回</i></a></div><div class="mini"><button class="pp" aria-label="再生/一時停止">▶</button><input type="range" class="seek" min="0" max="1000" value="0"><span class="tm">0:00 / 0:00</span></div></nav>
 <section class='ep' id='ep1'>
 <img class='epimg' src='img/p061.jpg' alt='10年ぶりに再会したシンヤさんとてつろーさん' style='object-position:50% 22%'><header><div class='eyebrow'>第1回（仮）・24分46秒</div><h2>貝塚の古民家で聞く上海発ホストの原点と10年ぶりの再会</h2></header>
 <audio id='a1' controls preload='metadata' src='audio/1.mp3'></audio>
@@ -86,6 +87,12 @@ document.querySelectorAll('.ctl [data-rate="1"]').forEach(b=>b.classList.add('on
 // 回メニュー: ヒーローを過ぎたら画面下に追随。今いる回を赤く
 const nav=document.querySelector('nav.eps'),heroEl=document.querySelector('figure.hero');
 new IntersectionObserver(([e])=>{const f=e.boundingClientRect.bottom<0;nav.classList.toggle('fixed',f);document.body.classList.toggle('navfixed',f);},{threshold:0}).observe(heroEl);
-const eps=[...document.querySelectorAll('section.ep')];
-const io2=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){const n=e.target.id.slice(2);nav.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.n===n));}},{rootMargin:'-40% 0px -55% 0px'});eps.forEach(x=>io2.observe(x));
+const auds=[...document.querySelectorAll('audio')],pp=nav.querySelector('.pp'),seek=nav.querySelector('.seek'),tm=nav.querySelector('.tm');let cur=auds[0];
+const fmt=t=>isFinite(t)?`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`:'0:00';
+function setCur(a){cur=a;const n=a.id.slice(1);nav.querySelectorAll('.eps-btns a').forEach(x=>x.classList.toggle('on',x.dataset.n===n));paintMini();}
+function paintMini(){pp.textContent=cur.paused?'▶':'❚❚';if(!seek.matches(':active'))seek.value=cur.duration?Math.round(cur.currentTime/cur.duration*1000):0;tm.textContent=`${fmt(cur.currentTime)} / ${fmt(cur.duration)}`;}
+auds.forEach(a=>{a.addEventListener('play',()=>{auds.forEach(o=>{if(o!==a&&!o.paused)o.pause();});setCur(a);});['pause','timeupdate','loadedmetadata','ended'].forEach(ev=>a.addEventListener(ev,()=>{if(a===cur)paintMini();}));});
+pp.onclick=()=>{cur.paused?cur.play():cur.pause();};
+seek.oninput=()=>{if(cur.duration)cur.currentTime=seek.value/1000*cur.duration;};
+setCur(auds[0]);
 </script></body></html>
