@@ -18,7 +18,8 @@ nav.eps.fixed{position:fixed;left:0;right:0;bottom:0;margin:0;padding:10px 16px 
 nav.eps.fixed{display:flex;align-items:center;gap:10px}nav.eps.fixed .eps-btns{gap:6px}nav.eps.fixed a{width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:14px}nav.eps.fixed a i{display:none}a i{font-style:normal}
 nav.eps.fixed{flex-wrap:wrap;padding-top:8px}.ctrl{display:none}
 nav.eps.fixed .mini{display:flex;width:100%;order:0;align-items:center;gap:8px}nav.eps.fixed .eps-btns{order:1}nav.eps.fixed .ctrl{display:flex;order:2;flex:1;justify-content:flex-end;align-items:center;gap:6px}
-.mini .seek{flex:1;min-width:0;accent-color:var(--acc);margin:0;height:22px}.mini .tm{font-size:11px;color:var(--ash);white-space:nowrap;font-variant-numeric:tabular-nums}
+.seekwrap{flex:1;min-width:0;position:relative;height:22px}.seekwrap .seek{width:100%;accent-color:var(--acc);margin:0;height:22px;position:relative;z-index:1}
+.ticks{position:absolute;left:8px;right:8px;top:0;bottom:0;pointer-events:none;z-index:2}.ticks i{position:absolute;top:6px;bottom:6px;width:2px;margin-left:-1px;background:var(--ink);opacity:.55;border-radius:1px}.mini .tm{font-size:11px;color:var(--ash);white-space:nowrap;font-variant-numeric:tabular-nums}
 .ctrl button{height:34px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700;font-size:12px;padding:0 10px;cursor:pointer}.ctrl .pp{width:38px;padding:0;border:0;background:var(--ink);color:#fff;font-size:13px}.ctrl .rt{min-width:44px;background:var(--acc);border-color:var(--acc);color:#fff}
 body.navfixed{padding-bottom:104px}
 nav.eps a.on{background:var(--acc);border-color:var(--acc);color:#fff}
@@ -56,7 +57,7 @@ footer{padding-top:28px;border-top:1px solid var(--line);font-size:12px;color:va
 <div class="hero"><div class="eyebrow">2026年9月26日 ZEN HOUSE KAIZUKA</div><h1>試聴とインタビュー記事</h1>
 <p class="lead">本編収録を3回に分けて編集した音源です。公開前の確認用で、番号と公開日はこれから決めます。各回の下に、同じ内容をインタビュー記事にしたものを置きました。</p></div>
 <figure class='hero'><img src='img/p069.jpg' alt='本編収録中。ZEN HOUSE KAIZUKAの座卓で（2026年9月26日）'><figcaption>本編収録中。ZEN HOUSE KAIZUKAの座卓で（2026年9月26日）</figcaption></figure>
-<nav class="eps"><div class="eps-btns"><a href='#ep1' data-n='1'><i>第</i>1<i>回</i></a><a href='#ep2' data-n='2'><i>第</i>2<i>回</i></a><a href='#ep3' data-n='3'><i>第</i>3<i>回</i></a></div><div class="mini"><input type="range" class="seek" min="0" max="1000" value="0"><span class="tm">0:00 / 0:00</span></div><div class="ctrl"><button class="bk" aria-label="15秒戻す">−15</button><button class="pp" aria-label="再生/一時停止">▶</button><button class="fw" aria-label="15秒進める">+15</button><button class="rt" aria-label="再生速度">1×</button></div></nav>
+<nav class="eps"><div class="eps-btns"><a href='#ep1' data-n='1'><i>第</i>1<i>回</i></a><a href='#ep2' data-n='2'><i>第</i>2<i>回</i></a><a href='#ep3' data-n='3'><i>第</i>3<i>回</i></a></div><div class="mini"><div class="seekwrap"><div class="ticks"></div><input type="range" class="seek" min="0" max="1000" value="0"></div><span class="tm">0:00 / 0:00</span></div><div class="ctrl"><button class="bk" aria-label="15秒戻す">−15</button><button class="pp" aria-label="再生/一時停止">▶</button><button class="fw" aria-label="15秒進める">+15</button><button class="rt" aria-label="再生速度">1×</button></div></nav>
 <section class='ep' id='ep1'>
 <img class='epimg' src='img/p061.jpg' alt='10年ぶりに再会したシンヤさんとてつろーさん' style='object-position:50% 22%'><header><div class='eyebrow'>第1回（仮）・24分46秒</div><h2>貝塚の古民家で聞く上海発ホストの原点と10年ぶりの再会</h2></header>
 <audio id='a1' controls preload='metadata' src='audio/1.mp3'></audio>
@@ -93,9 +94,10 @@ const nav=document.querySelector('nav.eps'),heroEl=document.querySelector('figur
 new IntersectionObserver(([e])=>{const f=e.boundingClientRect.bottom<0;nav.classList.toggle('fixed',f);document.body.classList.toggle('navfixed',f);},{threshold:0}).observe(heroEl);
 const auds=[...document.querySelectorAll('audio')],pp=nav.querySelector('.pp'),seek=nav.querySelector('.seek'),tm=nav.querySelector('.tm'),rt=nav.querySelector('.rt'),RATES=[1,1.5,2];let cur=auds[0];
 const fmt=t=>isFinite(t)?`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`:'0:00';
-function setCur(a){cur=a;rt.textContent=a.playbackRate+'×';const n=a.id.slice(1);nav.querySelectorAll('.eps-btns a').forEach(x=>x.classList.toggle('on',x.dataset.n===n));paintMini();}
+function setCur(a){cur=a;rt.textContent=a.playbackRate+'×';const n=a.id.slice(1);nav.querySelectorAll('.eps-btns a').forEach(x=>x.classList.toggle('on',x.dataset.n===n));paintMini();paintTicks();}
+function paintTicks(){const n=cur.id.slice(1),box=nav.querySelector('.ticks');box.innerHTML='';if(!cur.duration)return;document.querySelectorAll(`.chap a.ts[data-n="${n}"]`).forEach(a=>{const t=+a.dataset.sec;if(t>0&&t<cur.duration){const i=document.createElement('i');i.style.left=(t/cur.duration*100)+'%';box.appendChild(i);}});}
 function paintMini(){pp.textContent=cur.paused?'▶':'❚❚';if(!seek.matches(':active'))seek.value=cur.duration?Math.round(cur.currentTime/cur.duration*1000):0;tm.textContent=`${fmt(cur.currentTime)} / ${fmt(cur.duration)}`;}
-auds.forEach(a=>{a.addEventListener('play',()=>{auds.forEach(o=>{if(o!==a&&!o.paused)o.pause();});setCur(a);});['pause','timeupdate','loadedmetadata','ended'].forEach(ev=>a.addEventListener(ev,()=>{if(a===cur)paintMini();}));});
+auds.forEach(a=>{a.addEventListener('play',()=>{auds.forEach(o=>{if(o!==a&&!o.paused)o.pause();});setCur(a);});['pause','timeupdate','loadedmetadata','ended'].forEach(ev=>a.addEventListener(ev,()=>{if(a===cur){paintMini();if(ev==='loadedmetadata')paintTicks();}}));});
 pp.onclick=()=>{cur.paused?cur.play():cur.pause();};
 nav.querySelector('.bk').onclick=()=>{cur.currentTime=Math.max(0,cur.currentTime-15);};nav.querySelector('.fw').onclick=()=>{cur.currentTime=Math.min(cur.duration||1e9,cur.currentTime+15);};
 rt.onclick=()=>{const r=RATES[(RATES.indexOf(cur.playbackRate)+1)%RATES.length];cur.playbackRate=r;};
