@@ -8,12 +8,16 @@ h1{font-size:clamp(22px,6vw,32px);font-weight:900;line-height:1.35;margin:8px 0 
 h2{font-size:19px;font-weight:900;line-height:1.45;margin:38px 0 10px;padding-left:12px;border-left:4px solid var(--acc)}
 p{margin:0 0 14px}ul,ol{padding-left:1.4em;margin:0 0 14px}li{margin:0 0 8px}li::marker{color:var(--acc);font-weight:900}
 b{font-weight:900}
-.pro li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;list-style-position:inside}
+h3{font-size:16px;font-weight:900;margin:26px 0 8px}
+.shot{margin:14px 0 22px}.shot img{width:100%;display:block;border-radius:12px;border:1px solid var(--line)}.shot figcaption{font-size:12.5px;color:var(--ash);margin-top:6px}
+blockquote.ask{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:0 0 14px}
+blockquote.ask::before{content:"Claudeに貼る文";display:block;color:var(--acc);font-weight:900;font-size:11.5px;margin-bottom:4px}
 .foot{margin-top:40px;font-size:13px;color:var(--ash)}
 </style></head><body><div class="wrap">
 <div class="eyebrow"><a href="../shicho/">← 試聴とインタビュー記事</a>　作り方</div>
 <h1>録音1本から試聴ページまで、Claudeと無料のGitHubで作る手順</h1>
 <p>この試聴ページは、収録した音声1本とClaude、それにGitHubの無料枠だけで作りました。サーバーは持っていません。人がやることは少なくて、決めることが5つと、Claudeに5回頼むこと。それだけで、自分の取材や対談でも同じものが作れます。</p>
+<figure class="shot"><img src="img/00-before-after.png" alt="録音1本（左）が、Claudeに5回頼むとこのページ（右）になる" loading="lazy"><figcaption>録音1本（左）が、Claudeに5回頼むとこのページ（右）になる</figcaption></figure>
 <p>最初の「使う道具」と「人が決めること」は先に読んでください。「Claudeへの頼み方」は作るときに上から順に貼るもの、「つまずいた所」は困ったときに開くものです。</p>
 <h2>使う道具は3つ、全部無料枠で足りる</h2>
 <ul>
@@ -21,6 +25,7 @@ b{font-weight:900}
 <li><b>Claude</b>: 文字起こしから記事、ページの組み立て、公開まで全部こちらに頼みます。ブラウザ版よりデスクトップアプリ（Claude Code）が向いています。ファイルを直接読み書きできるからです</li>
 <li><b>GitHub</b>: 作ったページを置く場所です。GitHub Pagesという機能で、置いたファイルがそのままWebページになります。アカウントを作るところだけ自分でやります</li>
 </ul>
+<figure class="shot"><img src="img/01-recording.jpg" alt="収録の様子。座卓にマイク1本" loading="lazy"><figcaption>収録の様子。座卓にマイク1本</figcaption></figure>
 <h2>人が決めるのは5つ、ここはClaudeに任せない</h2>
 <ol>
 <li><b>何を録るか</b>。話す順番は決めず、聞きたいことだけ3つほど用意しました</li>
@@ -31,13 +36,21 @@ b{font-weight:900}
 </ol>
 <h2>Claudeへの頼み方は5回、そのまま貼れる</h2>
 <p>音声ファイルを入れたフォルダでClaudeを開き、上から順に頼みます。1回ごとに結果を見て、気に入らなければ「ここを直して」と返せばいいです。</p>
-<ol class="pro">
-<li>「このフォルダの音声を文字起こしして、話している人ごとに名前をつけて保存して」</li>
-<li>「文字起こしを読んで、話題が締まる所で3回に分ける案を出して。それぞれ何分になるかも」</li>
-<li>「第1回の文字起こしを、話し言葉のまま読めるインタビュー記事にして。見出しをつけて、聴きどころを時刻つきで3つ選んで」（第2回、第3回も同じ）</li>
-<li>「3回分の音声と記事を1枚のページにして。スマホで読めて、再生ボタンと章の目盛りがあって、日本語と英語を切り替えられるように」</li>
-<li>「このページをGitHub Pagesで公開して。URLを教えて」</li>
-</ol>
+<h3>1. 文字起こし</h3>
+<blockquote class="ask">「このフォルダの音声を文字起こしして、話している人ごとに名前をつけて保存して」</blockquote>
+<figure class="shot"><img src="img/02-transcript.png" alt="出てきたもの: 文字起こしファイルの一部" loading="lazy"><figcaption>出てきたもの: 文字起こしファイルの一部</figcaption></figure>
+<h3>2. 回に分ける</h3>
+<blockquote class="ask">「文字起こしを読んで、話題が締まる所で3回に分ける案を出して。それぞれ何分になるかも」</blockquote>
+<figure class="shot"><img src="img/03-split.png" alt="出てきたもの: 録音を3回に分ける案" loading="lazy"><figcaption>出てきたもの: 録音を3回に分ける案</figcaption></figure>
+<h3>3. 記事にする</h3>
+<blockquote class="ask">「第1回の文字起こしを、話し言葉のまま読めるインタビュー記事にして。見出しをつけて、聴きどころを時刻つきで3つ選んで」（第2回、第3回も同じ）</blockquote>
+<figure class="shot"><img src="img/04-article.png" alt="出てきたもの: できたインタビュー記事" loading="lazy"><figcaption>出てきたもの: できたインタビュー記事</figcaption></figure>
+<h3>4. ページにする</h3>
+<blockquote class="ask">「3回分の音声と記事を1枚のページにして。スマホで読めて、再生ボタンと章の目盛りがあって、日本語と英語を切り替えられるように」</blockquote>
+<figure class="shot"><img src="img/05-page-combo.png" alt="出てきたもの: スマホで開いた試聴ページ" loading="lazy"><figcaption>出てきたもの: スマホで開いた試聴ページ</figcaption></figure>
+<h3>5. 公開する</h3>
+<blockquote class="ask">「このページをGitHub Pagesで公開して。URLを教えて」</blockquote>
+<figure class="shot"><img src="img/06-github.png" alt="公開後のGitHub。ここに置いたファイルがそのままWebページになる" loading="lazy"><figcaption>公開後のGitHub。ここに置いたファイルがそのままWebページになる</figcaption></figure>
 <p>5番目でGitHubのアカウント作成とログインだけ自分で求められます。それ以外の操作はClaudeがやります。</p>
 <h2>つまずいた所は3つ、先に知っておくと1日浮く</h2>
 <ul>
