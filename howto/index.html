@@ -1,0 +1,56 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>録音1本から試聴ページまで、Claudeと無料のGitHubで作る手順</title><style>:root{--bg:#faf7f2;--card:#fff;--ink:#2a2420;--mute:#7d7168;--ash:#8f857c;--line:#e8ddd0;--acc:#c2410c;color-scheme:light}
+*{box-sizing:border-box}html,body{overflow-x:hidden;overscroll-behavior-x:none}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:15px 20px 80px}
+.eyebrow{color:var(--acc);font-weight:900;font-size:13px;letter-spacing:.06em}.eyebrow a{color:inherit;text-decoration:none}
+h1{font-size:clamp(22px,6vw,32px);font-weight:900;line-height:1.35;margin:8px 0 18px}
+h2{font-size:19px;font-weight:900;line-height:1.45;margin:38px 0 10px;padding-left:12px;border-left:4px solid var(--acc)}
+p{margin:0 0 14px}ul,ol{padding-left:1.4em;margin:0 0 14px}li{margin:0 0 8px}li::marker{color:var(--acc);font-weight:900}
+b{font-weight:900}
+.pro li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;list-style-position:inside}
+.foot{margin-top:40px;font-size:13px;color:var(--ash)}
+</style></head><body><div class="wrap">
+<div class="eyebrow"><a href="../shicho/">← 試聴とインタビュー記事</a>　作り方</div>
+<h1>録音1本から試聴ページまで、Claudeと無料のGitHubで作る手順</h1>
+<p>この試聴ページは、収録した音声1本とClaude、それにGitHubの無料枠だけで作りました。サーバーは持っていません。人がやることは少なくて、決めることが5つと、Claudeに5回頼むこと。それだけで、自分の取材や対談でも同じものが作れます。</p>
+<p>最初の「使う道具」と「人が決めること」は先に読んでください。「Claudeへの頼み方」は作るときに上から順に貼るもの、「つまずいた所」は困ったときに開くものです。</p>
+<h2>使う道具は3つ、全部無料枠で足りる</h2>
+<ul>
+<li><b>録音</b>: iPhoneのボイスメモで十分です。マイクは買っていません。今回も1本のマイクを座卓に置いて、3人で話しました</li>
+<li><b>Claude</b>: 文字起こしから記事、ページの組み立て、公開まで全部こちらに頼みます。ブラウザ版よりデスクトップアプリ（Claude Code）が向いています。ファイルを直接読み書きできるからです</li>
+<li><b>GitHub</b>: 作ったページを置く場所です。GitHub Pagesという機能で、置いたファイルがそのままWebページになります。アカウントを作るところだけ自分でやります</li>
+</ul>
+<h2>人が決めるのは5つ、ここはClaudeに任せない</h2>
+<ol>
+<li><b>何を録るか</b>。話す順番は決めず、聞きたいことだけ3つほど用意しました</li>
+<li><b>出したくない話</b>。収録の直後に本人に聞きます。今回は2箇所を音と記事の両方から外しました</li>
+<li><b>回の切れ目</b>。長い録音を分けるなら、話題が締まった所で切ります。Claudeに候補を出させて、最後は自分で決めます</li>
+<li><b>写真</b>。どの写真を使うかは自分で選びます。Claudeに選ばせると、目をつぶった1枚や関係ない外観を平気で出してきます</li>
+<li><b>公開のYes</b>。ページに出す前に、写っている人と話した人に見てもらいます。このページ自体がその確認用です</li>
+</ol>
+<h2>Claudeへの頼み方は5回、そのまま貼れる</h2>
+<p>音声ファイルを入れたフォルダでClaudeを開き、上から順に頼みます。1回ごとに結果を見て、気に入らなければ「ここを直して」と返せばいいです。</p>
+<ol class="pro">
+<li>「このフォルダの音声を文字起こしして、話している人ごとに名前をつけて保存して」</li>
+<li>「文字起こしを読んで、話題が締まる所で3回に分ける案を出して。それぞれ何分になるかも」</li>
+<li>「第1回の文字起こしを、話し言葉のまま読めるインタビュー記事にして。見出しをつけて、聴きどころを時刻つきで3つ選んで」（第2回、第3回も同じ）</li>
+<li>「3回分の音声と記事を1枚のページにして。スマホで読めて、再生ボタンと章の目盛りがあって、日本語と英語を切り替えられるように」</li>
+<li>「このページをGitHub Pagesで公開して。URLを教えて」</li>
+</ol>
+<p>5番目でGitHubのアカウント作成とログインだけ自分で求められます。それ以外の操作はClaudeがやります。</p>
+<h2>つまずいた所は3つ、先に知っておくと1日浮く</h2>
+<ul>
+<li><b>iPhoneで開いたら真っ白だった</b>。パソコンでは映るのに、Safariだけ真っ白。原因は英語切り替えの作り方の癖でしたが、大事なのはそこではなく、公開前に必ず自分のiPhoneで開くことです。Claudeの画面確認だけで「できた」と言わせないでください</li>
+<li><b>直したのに古いままだった</b>。GitHub Pagesは公開後10分ほど前の内容を見せ続けます。確認するときはURLの末尾に「?v=2」のような文字を足すと最新が出ます</li>
+<li><b>出したくない話が記事に残っていた</b>。音声から切っただけでは足りません。文字起こしと記事、それに英語版にもそのまま残っていて、あとから3か所を追いかけて消すことになりました。「この話は音と記事の両方から消して」と、両方を指定して頼みます</li>
+</ul>
+<h2>用語</h2>
+<ul>
+<li><b>GitHub</b>: プログラムやファイルを置いて共有するサービス。無料で使えます</li>
+<li><b>GitHub Pages</b>: GitHubに置いたHTMLファイルをそのままWebページとして公開する機能。サーバー代はかかりません</li>
+<li><b>リポジトリ</b>: GitHub上のフォルダのこと。ページ1つにつき1つ作ります</li>
+<li><b>試聴ページ</b>: 公開前に関係者だけで聴いて確認するためのページ。このサイトの「試聴とインタビュー記事」がそれです</li>
+</ul>
+<p>分からない所はLINEグループで聞いてください。最終更新 2026年9月27日</p>
+</div></body></html>
